@@ -26,9 +26,9 @@ request.setAttribute("requestPerson", new Person("안중근", 31));
 		<li>Person 객체 : <%= rPerson.getName() %>, <%= rPerson.getAge() %></li>
 	</ul>
 	<h2>포워드된 페이지에서 request 영역 속성값 읽기</h2>
-	<%-- 5
-	request.getRequestDispatcher("RequestForward.jsp?paramHan=한글&paramEng=English")
-	.forward(request, response);
-	--%>
+    <%
+    RequestDispatcher rd = request.getRequestDispatcher("RequestForward.jsp?paramHan=한글&paramEng=English");
+	rd.forward(request, response);
+	%>
 </body>
 </html>
