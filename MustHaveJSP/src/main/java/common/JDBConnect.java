@@ -6,6 +6,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
+import javax.servlet.ServletContext;
+
 public class JDBConnect {
 	public Connection con;
 	public Statement stmt;
@@ -16,7 +18,7 @@ public class JDBConnect {
 	public JDBConnect() {
 		try {
 			// JDBC 드라이버 로드
-			Class.forName("oracle.jdbc.driver.OracleDriver");
+			Class.forName("oracle.jdbc.OracleDriver");
 			
 			// DB에 연결
 			String url = "jdbc:oracle:thin:@localhost:1521:xe";
@@ -32,7 +34,7 @@ public class JDBConnect {
 	
 	public JDBConnect(String driver, String url, String id, String pwd) {
 		try {
-			//JDBC 드라이버 로드
+			// JDBC 드라이버 로드
 			Class.forName(driver);
 			
 			// DB에 연결
@@ -42,8 +44,24 @@ public class JDBConnect {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
-		
+	}
+	public JDBConnect(ServletContext application) {
+		try {
+			// JDBC 드라이버 로드
+			String driver = application.getInitParameter("OracleDriver");
+			Class.forName(driver);
+			
+			// DB에 연결
+			String url = application.getInitParameter("OracleURL");
+			String id = application.getInitParameter("OracleId");
+			String pwd = application.getInitParameter("OraclePwd");
+			con = DriverManager.getConnection(url, id, pwd);
+				
+			System.out.println("DB 연결 성공(인수 생성자2)");
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 	
 
