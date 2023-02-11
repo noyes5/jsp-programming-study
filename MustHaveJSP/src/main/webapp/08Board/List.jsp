@@ -31,12 +31,13 @@ dao.close();
 <body>
     <jsp:include page="../Common/Link.jsp" /> <!-- 공통링크 -->
     <h2>목록 보기(List)</h2>
+    <!-- 검색폼 -->
     <form method="get">
     <table border="1" width="90%">
     <tr>
         <td align="center">
             <select name="searchField">
-                <option value="titile">제목</option>
+                <option value="title">제목</option>
                 <option value="content">내용</option>
             </select>
             <input type="text" name="searchWord" />
@@ -91,7 +92,5 @@ dao.close();
                 <td><button type="button" onclick="location.href='Write.jsp';">글쓰기</button></td>
             </tr>
         </table>           
-        }
-    }
 </body>
 </html>
