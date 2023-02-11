@@ -29,7 +29,7 @@ dao.close();
 <title>회원제 게시판</title>
 </head>
 <body>
-    <jsp:include page="../Common/Link.jsp"> <!-- 공통링크 -->
+    <jsp:include page="../Common/Link.jsp" /> <!-- 공통링크 -->
     <h2>목록 보기(List)</h2>
     <form method="get">
     <table border="1" width="90%">
