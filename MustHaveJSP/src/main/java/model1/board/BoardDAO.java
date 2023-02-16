@@ -93,4 +93,50 @@ public class BoardDAO extends JDBConnect {
         
         return result;
     }
+    
+    public BoardDTO selectView(String num) {
+        BoardDTO dto = new BoardDTO();
+        
+        // 쿼리문 준비
+        String query = "SELECT B.*, M.name "
+                        + " FROM member M INNER JOIN board B "
+                        + " ON M.id=B.id "
+                        + " WHERE num=?";
+        
+        try { 
+            psmt = con.prepareStatement(query);
+            psmt.setString(1, num);   // 인파라미터를 일렬번호로 설정
+            rs = psmt.executeQuery(); // 쿼리생성 
+            
+        //결과 처리
+            if (rs.next()) {
+                dto.setNum(rs.getString(1));
+                dto.setTitle(rs.getString(2));
+                dto.setContent(rs.getString("content"));
+                dto.setPostdate(rs.getDate("postdate"));
+                dto.setId(rs.getString("id"));
+                dto.setVisitcount(rs.getString(6));
+                dto.setName(rs.getString("name"));
+            }
+        } catch (Exception e) {
+            System.out.println("게시물 상세보기 중 예외 발생");
+            e.printStackTrace();
+        }
+        
+        return dto;
+    }
+    
+    public void updateVisitCount(String num) {
+        String query = "UPDATE board SET "
+                        + " visitcount=visitcount+1 "
+                        + " WHERE num=?";
+        try {
+            psmt = con.prepareStatement(query);
+            psmt.setString(1, num); // 인파라미터를 일렬번호로 설정
+            psmt.executeQuery(); // 쿼리 실행
+        } catch (Exception e) {
+            System.out.println("게시물 조회수 증가 중 예외 발생");
+            e.printStackTrace();
+        }
+    }
 }
