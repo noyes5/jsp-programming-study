@@ -1,30 +1,19 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>표현 언어(EL) - 폼값 처리</title>
-</head>
-<body>
-    <h2>폼값 전송하기</h2>
-    <form name="frm" method="post" action="FormResult.jsp">
-        이름 : <input type="text" name="name" /><br />
-        성별 : <input type="radio" name="gender" value="Man" />남자
-              <input type="radio" name="gender" value="Woman" />여자<br />
-        학력 :
-            <select name="grade">
-                <option value="ele">초딩</option>
-                <option value="mid">중딩</option>
-                <option value="high">고딩</option>
-                <option value="uni">대딩</option>
-            </select>
-        관심사항 :
-            <input type="checkbox" name="inter" value="pol" />정치
-            <input type="checkbox" name="inter" value="eco" />경제
-            <input type="checkbox" name="inter" value="ent" />연예
-            <input type="checkbox" name="inter" value="spo" />운동<br />
-        <input type="submit" value="전송하기" />
-    </form>
-</body>
-</html>
+<table border="1" width="90%">
+    <tr>
+        <td align="center">
+        <!-- 로그인 여부에 따른 메뉴 변화-->
+        <% if (session.getAttribute("UserId") == null) { %>
+            <a href="../06Session/LoginForm.jsp">로그인</a>
+        <% } else { %>
+            <a href="../06Session/Logout.jsp">로그아웃</a>
+        <% } %>
+            <!--  8장과 9장의 회원제 게시판 프로젝트에서 사용할 링크-->
+            &nbsp;&nbsp;&nbsp;
+            <a href="../08Board/List.jsp">게시판(페이징X)</a>
+            &nbsp;&nbsp;&nbsp;
+            <a href="../09PagingBoard/List.jsp">게시판(페이징O)</a>
+        </td>
+    </tr>
+</table>
