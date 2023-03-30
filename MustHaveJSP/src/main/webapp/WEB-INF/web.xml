@@ -37,7 +37,7 @@
   </context-param>
   <context-param>
   	<param-name>OracleId</param-name>
-  	<param-value>c##musthave</param-value>
+  	<param-value>musthave</param-value>
   </context-param>
   <context-param>
   	<param-name>OraclePwd</param-name>
